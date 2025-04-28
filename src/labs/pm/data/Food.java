@@ -37,9 +37,4 @@ public class Food extends Product {
     public Product applyRating(Rating newRating) {
         return new Food(getId(), getName(), getPrice(), newRating, bestBefore);
     }
-
-    @Override
-    public String toString() {
-        return super.toString() + ", " + bestBefore;
-    }
 }

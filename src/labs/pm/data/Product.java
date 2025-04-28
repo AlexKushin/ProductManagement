@@ -30,6 +30,7 @@ package labs.pm.data;
  **/
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import static java.math.RoundingMode.HALF_UP;
@@ -90,10 +91,18 @@ public abstract class Product {
 
     public abstract Product applyRating(Rating rating);
 
+    /**
+     * Assumes that the best before date is today
+     * @return current date
+     */
+    public LocalDate getBestBefore() {
+        return LocalDate.now();
+    }
+
     @Override
     public String toString() {
         return id + ", " + name + ", " + price
-                + ", " + getDiscount() + ", " + rating.getStars();
+                + ", " + getDiscount() + ", " + rating.getStars() + ", " + getBestBefore();
     }
 
     @Override
