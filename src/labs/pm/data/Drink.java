@@ -28,4 +28,9 @@ public class Drink extends Product {
                 now.isBefore(LocalTime.of(18, 30)))
                 ? super.getDiscount() : BigDecimal.ZERO;
     }
+
+    @Override
+    public Product applyRating(Rating newRating) {
+        return new Drink(getId(), getName(), getPrice(), newRating);
+    }
 }

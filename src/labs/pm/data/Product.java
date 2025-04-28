@@ -36,7 +36,7 @@ import static java.math.RoundingMode.HALF_UP;
 import static labs.pm.data.Rating.NOT_RATED;
 
 
-public class Product {
+public abstract class Product {
     public static final BigDecimal DISCOUNT_RATE = BigDecimal.valueOf(0.1);
     private final int id;
     private final String name;
@@ -88,9 +88,7 @@ public class Product {
         return rating;
     }
 
-    public Product applyRating(Rating rating) {
-        return new Product(id, name, price, rating);
-    }
+    public abstract Product applyRating(Rating rating);
 
     @Override
     public String toString() {
