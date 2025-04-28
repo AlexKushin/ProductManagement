@@ -15,7 +15,7 @@ import java.time.LocalDate;
 /**
  * @author kyshi
  **/
-public class Food extends Product {
+public final class Food extends Product {
     private LocalDate bestBefore;
 
     Food(int id, String name, BigDecimal price, Rating rating, LocalDate bestBefore) {
