@@ -17,11 +17,35 @@ import java.time.LocalDate;
  **/
 public class ProductManager {
 
+    private Product product;
+    private Review review;
+
     public Product createProduct(int id, String name, BigDecimal price, Rating rating, LocalDate destBefore) {
-        return new Food(id, name, price, rating, destBefore);
+        product = new Food(id, name, price, rating, destBefore);
+        return product;
     }
 
     public Product createProduct(int id, String name, BigDecimal price, Rating rating) {
-        return new Drink(id, name, price, rating);
+        product = new Drink(id, name, price, rating);
+        return product;
+    }
+
+    public Product reviewProduct(Product product, Rating rating, String comment) {
+        review = new Review(rating, comment);
+        this.product = product.applyRating(rating);
+        return this.product;
+    }
+
+    public void printProductReport() {
+        StringBuilder txt = new StringBuilder();
+        txt.append(product);
+        txt.append("\n");
+        if (review != null) {
+            txt.append(review);
+        } else {
+            txt.append("Not reviewed");
+        }
+        txt.append("\n");
+        System.out.println(txt);
     }
 }
