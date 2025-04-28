@@ -30,6 +30,7 @@ package labs.pm.data;
  **/
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 import static java.math.RoundingMode.HALF_UP;
 import static labs.pm.data.Rating.NOT_RATED;
@@ -95,6 +96,25 @@ public class Product {
     public String toString() {
         return id + ", " + name + ", " + price
                 + ", " + getDiscount() + ", " + rating.getStars();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        //distinguish difference between types
+        // if (o == null || getClass() != o.getClass()) return false;
+        // Product product = (Product) o;
+
+        //checks if objects have common superclass
+        if (o instanceof Product product) {
+            return id == product.id && Objects.equals(name, product.name);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
 
