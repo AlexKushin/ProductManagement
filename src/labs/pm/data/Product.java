@@ -90,5 +90,11 @@ public class Product {
     public Product applyRating(Rating rating) {
         return new Product(id, name, price, rating);
     }
+
+    @Override
+    public String toString() {
+        return id + ", " + name + ", " + price
+                + ", " + getDiscount() + ", " + rating.getStars();
+    }
 }
 
