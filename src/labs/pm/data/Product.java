@@ -37,7 +37,7 @@ import static java.math.RoundingMode.HALF_UP;
 import static labs.pm.data.Rating.NOT_RATED;
 
 
-public abstract sealed class Product permits Food, Drink {
+public abstract sealed class Product implements Rateable<Product> permits Food, Drink {
     public static final BigDecimal DISCOUNT_RATE = BigDecimal.valueOf(0.1);
     private final int id;
     private final String name;
