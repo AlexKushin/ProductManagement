@@ -36,44 +36,44 @@ public class Shop {
         ProductManager pm = new ProductManager(Locale.US);
 
         Product p1 = pm.createProduct(101, "Tea", BigDecimal.valueOf(1.99), NOT_RATED);
-        pm.printProductReport(p1);
-        p1 = pm.reviewProduct(p1, FOUR_STAR, "Nice tea");
-        p1 = pm.reviewProduct(p1, TWO_STAR, "Rather weak tea");
-        p1 = pm.reviewProduct(p1, FOUR_STAR, "Fine tea");
-        p1 = pm.reviewProduct(p1, FOUR_STAR, "Good tea");
-        p1 = pm.reviewProduct(p1, FIVE_STAR, "Perfect tea");
-        p1 = pm.reviewProduct(p1, THREE_STAR, "Just add some lemon");
-        pm.printProductReport(p1);
+        pm.printProductReport(101);
+        pm.reviewProduct(101, FOUR_STAR, "Nice tea");
+        pm.reviewProduct(101, TWO_STAR, "Rather weak tea");
+        pm.reviewProduct(101, FOUR_STAR, "Fine tea");
+        pm.reviewProduct(101, FOUR_STAR, "Good tea");
+        pm.reviewProduct(101, FIVE_STAR, "Perfect tea");
+        pm.reviewProduct(101, THREE_STAR, "Just add some lemon");
+        pm.printProductReport(101);
 
         Product p2 = pm.createProduct(102, "Coffee", BigDecimal.valueOf(2.99), NOT_RATED);
-        pm.printProductReport(p2);
-        p2 = pm.reviewProduct(p2, FIVE_STAR, "Strong and bold");
-        p2 = pm.reviewProduct(p2, FOUR_STAR, "Nice aroma");
-        p2 = pm.reviewProduct(p2, THREE_STAR, "Too bitter for me");
-        pm.printProductReport(p2);
+        pm.printProductReport(102);
+        pm.reviewProduct(102, FIVE_STAR, "Strong and bold");
+        pm.reviewProduct(102, FOUR_STAR, "Nice aroma");
+        pm.reviewProduct(102, THREE_STAR, "Too bitter for me");
+        pm.printProductReport(102);
 
         Product p3 = pm.createProduct(103, "Ice Cream", BigDecimal.valueOf(3.49), NOT_RATED, LocalDate.now().plusDays(5));
-        pm.printProductReport(p3);
-        p3 = pm.reviewProduct(p3, FOUR_STAR, "Sweet and creamy");
-        p3 = pm.reviewProduct(p3, FIVE_STAR, "Perfect winter drink");
-        p3 = pm.reviewProduct(p3, FOUR_STAR, "Kids love it");
-        p3 = pm.reviewProduct(p3, FIVE_STAR, "Best hot chocolate ice cream I've had");
-        pm.printProductReport(p3);
+        pm.printProductReport(103);
+        pm.reviewProduct(103, FOUR_STAR, "Sweet and creamy");
+        pm.reviewProduct(103, FIVE_STAR, "Perfect winter drink");
+        pm.reviewProduct(103, FOUR_STAR, "Kids love it");
+        pm.reviewProduct(103, FIVE_STAR, "Best hot chocolate ice cream I've had");
+        pm.printProductReport(103);
 
         Product p4 = pm.createProduct(104, "Green Tea", BigDecimal.valueOf(2.49), NOT_RATED);
-        pm.printProductReport(p4);
-        p4 = pm.reviewProduct(p4, THREE_STAR, "Decent");
-        p4 = pm.reviewProduct(p4, TWO_STAR, "Too grassy");
-        p4 = pm.reviewProduct(p4, THREE_STAR, "Ok with honey");
-        pm.printProductReport(p4);
+        pm.printProductReport(104);
+        pm.reviewProduct(104, THREE_STAR, "Decent");
+        pm.reviewProduct(104, TWO_STAR, "Too grassy");
+        pm.reviewProduct(104, THREE_STAR, "Ok with honey");
+        pm.printProductReport(104);
 
         Product p5 = pm.createProduct(105, "Herbal Infusion", BigDecimal.valueOf(2.79), NOT_RATED);
-        pm.printProductReport(p5);
-        p5 = pm.reviewProduct(p5, FIVE_STAR, "Very relaxing");
-        p5 = pm.reviewProduct(p5, FOUR_STAR, "Great before bed");
-        p5 = pm.reviewProduct(p5, FOUR_STAR, "Lovely smell");
-        p5 = pm.reviewProduct(p5, FIVE_STAR, "Best herbal tea");
-        p5 = pm.reviewProduct(p5, THREE_STAR, "Needs stronger flavor");
+        pm.printProductReport(105);
+        pm.reviewProduct(105, FIVE_STAR, "Very relaxing");
+        pm.reviewProduct(105, FOUR_STAR, "Great before bed");
+        pm.reviewProduct(105, FOUR_STAR, "Lovely smell");
+        pm.reviewProduct(105, FIVE_STAR, "Best herbal tea");
+        pm.reviewProduct(105, THREE_STAR, "Needs stronger flavor");
         pm.printProductReport(p5);
     }
 }

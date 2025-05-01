@@ -60,8 +60,13 @@ public class ProductManager {
         return product;
     }
 
+    public Product reviewProduct(int id, Rating rating, String comment) {
+        return reviewProduct(findProduct(id), rating, comment);
+    }
+
     public void printProductReport(Product product) {
         List<Review> reviews = products.get(product);
+        Collections.sort(reviews);
         StringBuilder txt = new StringBuilder();
         String type = switch (product) {
             case Food food -> resources.getString("food");
@@ -88,5 +93,21 @@ public class ProductManager {
             txt.append("\n");
         }
         System.out.println(txt);
+    }
+
+    public void printProductReport(int id) {
+        printProductReport(findProduct(id));
+    }
+
+    public Product findProduct(int id) {
+        Set<Product> products = this.products.keySet();
+        Product result = null;
+        for (Product product : products) {
+            if (product.getId() == id) {
+                result = product;
+                break;
+            }
+        }
+        return result;
     }
 }

@@ -115,7 +115,7 @@ public abstract sealed class Product implements Rateable<Product> permits Food, 
 
         //checks if objects have common superclass
         if (o instanceof Product product) {
-            return id == product.id && Objects.equals(name, product.name);
+            return id == product.id;
         }
         return false;
     }
