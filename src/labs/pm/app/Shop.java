@@ -33,7 +33,7 @@ import java.util.Locale;
 
 public class Shop {
     public static void main(String[] args) {
-        ProductManager pm = new ProductManager(Locale.US);
+        ProductManager pm = new ProductManager("en-GB");
 
         Product p1 = pm.createProduct(101, "Tea", BigDecimal.valueOf(1.99), NOT_RATED);
         pm.printProductReport(101);
@@ -45,6 +45,7 @@ public class Shop {
         pm.reviewProduct(101, THREE_STAR, "Just add some lemon");
         pm.printProductReport(101);
 
+        pm.changeLocale("fr-FR");
         Product p2 = pm.createProduct(102, "Coffee", BigDecimal.valueOf(2.99), NOT_RATED);
         pm.printProductReport(102);
         pm.reviewProduct(102, FIVE_STAR, "Strong and bold");
