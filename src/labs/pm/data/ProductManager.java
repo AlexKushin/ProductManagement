@@ -112,6 +112,17 @@ public class ProductManager {
         return formatters.keySet();
     }
 
+    public void printProducts(Comparator<Product> sorter) {
+        List<Product> productsList = new ArrayList<>(products.keySet());
+        productsList.sort(sorter);
+        StringBuilder txt = new StringBuilder();
+        for (Product product : productsList) {
+            txt.append(formatter.formatProduct(product));
+            txt.append("\n");
+        }
+        System.out.println(txt);
+    }
+
     private static class ResourceFormatter {
         private Locale locale;
         private ResourceBundle resources;
