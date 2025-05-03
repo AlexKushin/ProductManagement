@@ -88,5 +88,6 @@ public class Shop {
 
 //        pm.printProducts(ratingSorter.thenComparing(priceSorter));
         pm.printProducts(p -> p.getPrice().floatValue() < 2, priceSorter);
+        pm.getDiscounts().forEach((rating, discount) -> System.out.println(rating + "\t" + discount));
     }
 }
