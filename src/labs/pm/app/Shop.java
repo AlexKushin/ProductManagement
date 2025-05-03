@@ -78,14 +78,15 @@ public class Shop {
         pm.reviewProduct(105, THREE_STAR, "Needs stronger flavor");
 //        pm.printProductReport(p5);
 
-        pm.printProducts((p1, p2) ->
-                p2.getRating().ordinal() - p1.getRating().ordinal());
-        pm.printProducts((p1, p2) ->
-                p2.getPrice().compareTo(p1.getPrice()));
+//        pm.printProducts((p1, p2) ->
+//                p2.getRating().ordinal() - p1.getRating().ordinal());
+//        pm.printProducts((p1, p2) ->
+//                p2.getPrice().compareTo(p1.getPrice()));
 
         Comparator<Product> ratingSorter = (p1, p2) -> p2.getRating().ordinal() - p1.getRating().ordinal();
         Comparator<Product> priceSorter = (p1, p2) -> p2.getPrice().compareTo(p1.getPrice());
 
-        pm.printProducts(ratingSorter.thenComparing(priceSorter));
+//        pm.printProducts(ratingSorter.thenComparing(priceSorter));
+        pm.printProducts(p -> p.getPrice().floatValue() < 2, priceSorter);
     }
 }
