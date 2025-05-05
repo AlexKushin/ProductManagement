@@ -12,6 +12,8 @@ package labs.pm.data;
 import java.math.BigDecimal;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -27,7 +29,9 @@ import java.util.stream.Collectors;
 public class ProductManager {
 
     private static final Logger logger = Logger.getLogger(ProductManager.class.getName());
-
+    private ResourceBundle config = ResourceBundle.getBundle("labs.pm.data.config");
+    private MessageFormat reviewFormat = new MessageFormat(config.getString("review.data.format"));
+    private MessageFormat productFormat = new MessageFormat(config.getString("product.data.format"));
     private Map<Product, List<Review>> products = new HashMap<>();
 
     private static Map<String, ResourceFormatter> formatters =
@@ -164,6 +168,39 @@ public class ProductManager {
 //                .map(p -> formatter.formatProduct(p) + "\n")
 //                .collect(Collectors.joining()));
         System.out.println(txt);
+    }
+
+    public void parseReview(String text) {
+        try {
+            Object[] values = reviewFormat.parse(text);
+            reviewProduct(
+                    Integer.parseInt((String) values[0]),
+                    Rateable.convert(Integer.parseInt((String) values[1])),
+                    (String) values[2]);
+        } catch (ParseException | NumberFormatException e) {
+            logger.log(Level.WARNING, "Error parsing review " + text, e.getMessage());
+        }
+    }
+
+    public void parseProduct(String text) {
+        try {
+            Object[] values = productFormat.parse(text);
+            int id = Integer.parseInt((String) values[1]);
+            String name = (String) values[2];
+            BigDecimal price = BigDecimal.valueOf(Double.parseDouble((String) values[3]));
+            Rating rating = Rateable.convert(Integer.parseInt((String) values[4]));
+            switch ((String) values[0]) {
+                case "D":
+                    createProduct(id, name, price, rating);
+                    break;
+                case "F":
+                    LocalDate bestBefore = LocalDate.parse((String) values[5]);
+                    createProduct(id, name, price, rating, bestBefore);
+            }
+
+        } catch (ParseException | NumberFormatException | DateTimeException e) {
+            logger.log(Level.WARNING, "Error parsing product " + text, e.getMessage());
+        }
     }
 
     public Map<String, String> getDiscounts() {
