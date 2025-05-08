@@ -36,9 +36,7 @@ public class Shop {
     public static void main(String[] args) {
         ProductManager pm = new ProductManager("en-GB");
 
-//        pm.createProduct(101, "Tea", BigDecimal.valueOf(1.99), NOT_RATED);
         pm.parseProduct("D,101,Tea,1.99,0,2021-09-21");
-        pm.printProductReport(101);
         pm.parseReview("101,4,Nice tea");
         pm.parseReview("101,2,Rather weak tea");
         pm.parseReview("101,3,Fine tea");
@@ -47,44 +45,13 @@ public class Shop {
         pm.parseReview("101,3,Just add some lemon");
         pm.printProductReport(101);
 
-////        pm.printProductReport(101);
-//
-////        pm.changeLocale("fr-FR");
-//        pm.createProduct(102, "Coffee", BigDecimal.valueOf(2.99), NOT_RATED);
-////        pm.printProductReport(102);
-//        pm.reviewProduct(102, FIVE_STAR, "Strong and bold");
-//        pm.reviewProduct(102, FOUR_STAR, "Nice aroma");
-//        pm.reviewProduct(102, THREE_STAR, "Too bitter for me");
-////        pm.printProductReport(102);
-//
-//        pm.createProduct(103, "Ice Cream", BigDecimal.valueOf(3.49), NOT_RATED, LocalDate.now().plusDays(5));
-////        pm.printProductReport(103);
-//        pm.reviewProduct(103, FOUR_STAR, "Sweet and creamy");
-//        pm.reviewProduct(103, FIVE_STAR, "Perfect winter drink");
-//        pm.reviewProduct(103, FOUR_STAR, "Kids love it");
-//        pm.reviewProduct(103, FIVE_STAR, "Best hot chocolate ice cream I've had");
-////        pm.printProductReport(103);
-//
-//        pm.createProduct(104, "Green Tea", BigDecimal.valueOf(2.49), NOT_RATED);
-////        pm.printProductReport(104);
-//        pm.reviewProduct(104, THREE_STAR, "Decent");
-//        pm.reviewProduct(104, TWO_STAR, "Too grassy");
-//        pm.reviewProduct(104, THREE_STAR, "Ok with honey");
-////        pm.printProductReport(104);
-//
-//        pm.createProduct(105, "Herbal Infusion", BigDecimal.valueOf(2.79), NOT_RATED);
-////        pm.printProductReport(105);
-//        pm.reviewProduct(105, FIVE_STAR, "Very relaxing");
-//        pm.reviewProduct(105, FOUR_STAR, "Great before bed");
-//        pm.reviewProduct(105, FOUR_STAR, "Lovely smell");
-//        pm.reviewProduct(105, FIVE_STAR, "Best herbal tea");
-//        pm.reviewProduct(105, THREE_STAR, "Needs stronger flavor");
-////        pm.printProductReport(p5);
-//
-////        pm.printProducts((p1, p2) ->
-////                p2.getRating().ordinal() - p1.getRating().ordinal());
-////        pm.printProducts((p1, p2) ->
-////                p2.getPrice().compareTo(p1.getPrice()));
+        pm.parseProduct("F,103,Cake,3.99,0,2025-04-21");
+        pm.printProductReport(103);
+
+//        pm.printProducts((p1, p2) ->
+//                p2.getRating().ordinal() - p1.getRating().ordinal());
+//        pm.printProducts((p1, p2) ->
+//                p2.getPrice().compareTo(p1.getPrice()));
 //
 //        Comparator<Product> ratingSorter = (p1, p2) -> p2.getRating().ordinal() - p1.getRating().ordinal();
 //        Comparator<Product> priceSorter = (p1, p2) -> p2.getPrice().compareTo(p1.getPrice());
