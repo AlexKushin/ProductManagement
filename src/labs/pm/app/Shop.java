@@ -36,16 +36,14 @@ public class Shop {
     public static void main(String[] args) {
         ProductManager pm = new ProductManager("en-GB");
 
-        pm.parseProduct("D,101,Tea,1.99,0,2021-09-21");
-        pm.parseReview("101,4,Nice tea");
-        pm.parseReview("101,2,Rather weak tea");
-        pm.parseReview("101,3,Fine tea");
-        pm.parseReview("101,4,Good tea");
-        pm.parseReview("101,5,Perfect tea");
-        pm.parseReview("101,3,Just add some lemon");
+//        pm.parseReview("101,2,Rather weak tea");
+//        pm.parseReview("101,3,Fine tea");
+//        pm.parseReview("101,4,Good tea");
+//        pm.parseReview("101,5,Perfect tea");
+//        pm.parseReview("101,3,Just add some lemon");
         pm.printProductReport(101);
 
-        pm.parseProduct("F,103,Cake,3.99,0,2025-04-21");
+//        pm.parseProduct("F,103,Cake,3.99,0,2025-04-21");
         pm.printProductReport(103);
 
 //        pm.printProducts((p1, p2) ->
