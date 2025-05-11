@@ -45,6 +45,12 @@ public class Shop {
 
 //        pm.parseProduct("F,103,Cake,3.99,0,2025-04-21");
         pm.printProductReport(103);
+//        pm.dumpData();
+//        pm.restoreData();
+
+
+        pm.printProductReport(103);
+
 
 //        pm.printProducts((p1, p2) ->
 //                p2.getRating().ordinal() - p1.getRating().ordinal());

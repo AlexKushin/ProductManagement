@@ -9,9 +9,7 @@
 
 package labs.pm.data;
 
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -21,6 +19,7 @@ import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.time.DateTimeException;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -167,7 +166,7 @@ public class ProductManager {
                 reviews = Files.lines(file, Charset.forName("UTF-8"))
                         .map(text -> parseReview(text))
                         .filter(review -> review != null)
-                        .peek(r -> reviewProduct(product.getId(), r.rating(), r.comments()))
+//                        .peek(r -> reviewProduct(product.getId(), r.rating(), r.comments()))
                         .collect(Collectors.toList());
             } catch (IOException e) {
                 logger.log(Level.WARNING, "Error loading reviews " + e.getMessage());
@@ -197,6 +196,40 @@ public class ProductManager {
                     .collect(Collectors.toMap(product -> product, product -> loadReviews(product)));
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Error loading data" + e.getMessage());
+        }
+    }
+
+    private void dumpData() {
+        try {
+            if (Files.notExists(tempFolder)) {
+                Files.createDirectory(tempFolder);
+            }
+            Path tempFile = tempFolder.resolve(
+                    MessageFormat.format(config.getString("temp.file"), Instant.now().toString().replace(':', '.'
+                    )));
+            try (ObjectOutputStream out = new ObjectOutputStream(
+                    Files.newOutputStream(tempFile, StandardOpenOption.CREATE))) {
+                out.writeObject(products);
+                products = new HashMap<>();
+            }
+
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Error dumping data" + e.getMessage(), e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void restoreData() {
+        try {
+            Path tempFile = Files.list(tempFolder)
+                    .filter(path -> path.getFileName().toString().endsWith("tmp"))
+                    .findFirst()
+                    .orElseThrow();
+            try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(tempFile, StandardOpenOption.DELETE_ON_CLOSE))) {
+                products = (HashMap) in.readObject();
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Error restoring data" + e.getMessage(), e);
         }
     }
 
