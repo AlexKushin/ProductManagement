@@ -11,7 +11,7 @@ package labs.pm.data;
 
 import java.io.*;
 import java.math.BigDecimal;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
@@ -110,11 +110,11 @@ public class ProductManager {
         Path productFile = reportsFolder.resolve(MessageFormat.format(
                 config.getString("report.file"), product.getId()));
         try (PrintWriter out = new PrintWriter(new OutputStreamWriter(
-                Files.newOutputStream(productFile, StandardOpenOption.CREATE), "UTF-8"))) {
-            out.append(formatter.formatProduct(product) + System.lineSeparator());
+                Files.newOutputStream(productFile, StandardOpenOption.CREATE), StandardCharsets.UTF_8))) {
+            out.append(formatter.formatProduct(product)).append(System.lineSeparator());
 
             if (reviews.isEmpty()) {
-                out.append(formatter.getText("no.reviews") + System.lineSeparator());
+                out.append(formatter.getText("no.reviews")).append(System.lineSeparator());
             } else {
                 out.append(
                         reviews.stream()
@@ -169,7 +169,7 @@ public class ProductManager {
             reviews = new ArrayList<>();
         } else {
             try {
-                reviews = Files.lines(file, Charset.forName("UTF-8"))
+                reviews = Files.lines(file, StandardCharsets.UTF_8)
                         .map(text -> parseReview(text))
                         .filter(review -> review != null)
 //                        .peek(r -> reviewProduct(product.getId(), r.rating(), r.comments()))
@@ -185,7 +185,7 @@ public class ProductManager {
         Product product = null;
         try {
             product = parseProduct(
-                    Files.lines(dataFolder.resolve(file), Charset.forName("UTF-8"))
+                    Files.lines(dataFolder.resolve(file), StandardCharsets.UTF_8)
                             .findFirst().orElseThrow());
         } catch (Exception e) {
             logger.log(Level.WARNING, "Error loading product " + e.getMessage());
@@ -294,9 +294,9 @@ public class ProductManager {
 
     private static class ResourceFormatter {
         private Locale locale;
-        private ResourceBundle resources;
-        private DateTimeFormatter dateFormat;
-        private NumberFormat moneyFormat;
+        private final ResourceBundle resources;
+        private final DateTimeFormatter dateFormat;
+        private final NumberFormat moneyFormat;
 
         public ResourceFormatter(Locale locale) {
             this.locale = locale;
