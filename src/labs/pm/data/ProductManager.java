@@ -180,7 +180,7 @@ public class ProductManager {
         return formatters.getOrDefault(localeTag, formatters.get("en-GB"));
     }
 
-    public Set<String> getSupportedLocales() {
+    public static Set<String> getSupportedLocales() {
         return formatters.keySet();
     }
 
@@ -285,7 +285,6 @@ public class ProductManager {
             Object[] values = reviewFormat.parse(text);
             review = new Review(Rateable.convert(Integer.parseInt((String) values[0])),
                     (String) values[1]);
-
         } catch (ParseException | NumberFormatException e) {
             logger.log(Level.WARNING, "Error parsing review " + text, e.getMessage());
         }
